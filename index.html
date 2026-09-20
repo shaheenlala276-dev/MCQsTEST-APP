@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#0f172a">
+
+    <title>MCQs Test App</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 30px 22px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 18px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, #38bdf8, #6366f1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 34px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #dbeafe;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 14px 8px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+
+        .feature span {
+            display: block;
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+
+        .start-btn {
+            width: 100%;
+            border: none;
+            border-radius: 16px;
+            padding: 16px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            transition: 0.2s;
+        }
+
+        .start-btn:active {
+            transform: scale(0.97);
+        }
+
+        .subjects {
+            display: none;
+            margin-top: 25px;
+        }
+
+        .subjects h2 {
+            margin-bottom: 15px;
+        }
+
+        .subject-btn {
+            width: 100%;
+            border: none;
+            margin: 7px 0;
+            padding: 14px;
+            border-radius: 14px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .subject-btn:active {
+            transform: scale(0.98);
+        }
+
+        .message {
+            display: none;
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 12px;
+            background: rgba(34, 197, 94, 0.2);
+            color: #dcfce7;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #bfdbfe;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="card">
+
+        <div class="logo">📝</div>
+
+        <h1>MCQs Test App</h1>
+
+        <p class="subtitle">
+            Practice smarter. Test your knowledge.
+            Prepare for university entrance tests.
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+                <span>⏱️</span>
+                Timed Tests
+            </div>
+
+            <div class="feature">
+                <span>📊</span>
+                Results
+            </div>
+
+            <div class="feature">
+                <span>✅</span>
+                MCQ Practice
+            </div>
+
+            <div class="feature">
+                <span>📚</span>
+                Multiple Subjects
+            </div>
+
+        </div>
+
+        <button class="start-btn" onclick="showSubjects()">
+            🚀 Start Test
+        </button>
+
+        <div class="subjects" id="subjects">
+
+            <h2>Choose Subject</h2>
+
+            <button class="subject-btn" onclick="selectSubject('Computer Science')">
+                💻 Computer Science
+            </button>
+
+            <button class="subject-btn" onclick="selectSubject('Mathematics')">
+                📐 Mathematics
+            </button>
+
+            <button class="subject-btn" onclick="selectSubject('Physics')">
+                ⚡ Physics
+            </button>
+
+            <button class="subject-btn" onclick="selectSubject('English')">
+                📖 English
+            </button>
+
+            <div class="message" id="message"></div>
+
+        </div>
+
+        <footer>
+            MCQs Test App • University Entry Test Preparation
+        </footer>
+
+    </div>
+
+</div>
+
+<script>
+
+    function showSubjects() {
+
+        document.getElementById("subjects").style.display = "block";
+
+        document.querySelector(".start-btn").style.display = "none";
+
+    }
+
+    function selectSubject(subject) {
+
+        const message = document.getElementById("message");
+
+        message.style.display = "block";
+
+        message.innerHTML =
+            "✅ " + subject + " selected!<br><br>" +
+            "The MCQ test system will be added in the next phase.";
+
+    }
+
+</script>
+
+</body>
+</html>
