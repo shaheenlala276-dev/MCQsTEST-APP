@@ -1,585 +1,626 @@
-// ==========================================
-// MCQs TEST APP - Main JavaScript
-// ==========================================
+/* ================================
+   GLOBAL
+================================ */
 
-// ---------- MCQ DATABASE ----------
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-const questionBank = {
-
-    "Computer Science": [
-        {
-            question: "Which of the following is a programming language?",
-            options: ["HTML", "CSS", "C++", "HTTP"],
-            answer: 2,
-            explanation: "C++ is a programming language used to develop many types of software."
-        },
-        {
-            question: "What does CPU stand for?",
-            options: [
-                "Central Processing Unit",
-                "Computer Personal Unit",
-                "Central Program Utility",
-                "Computer Processing User"
-            ],
-            answer: 0,
-            explanation: "CPU stands for Central Processing Unit. It executes instructions in a computer."
-        },
-        {
-            question: "Which data structure uses FIFO?",
-            options: ["Stack", "Queue", "Tree", "Graph"],
-            answer: 1,
-            explanation: "A Queue follows FIFO: First In, First Out."
-        },
-        {
-            question: "Which language is mainly used to query databases?",
-            options: ["SQL", "HTML", "CSS", "XML"],
-            answer: 0,
-            explanation: "SQL stands for Structured Query Language and is used to work with databases."
-        },
-        {
-            question: "What is the binary representation of decimal 5?",
-            options: ["100", "101", "110", "111"],
-            answer: 1,
-            explanation: "Decimal 5 is represented as 101 in binary."
-        }
-    ],
-
-    "Mathematics": [
-        {
-            question: "What is 5 × 6?",
-            options: ["20", "25", "30", "35"],
-            answer: 2,
-            explanation: "5 × 6 = 30."
-        },
-        {
-            question: "What is the value of 2²?",
-            options: ["2", "4", "6", "8"],
-            answer: 1,
-            explanation: "2² means 2 × 2 = 4."
-        },
-        {
-            question: "What is sin 90°?",
-            options: ["0", "1", "-1", "1/2"],
-            answer: 1,
-            explanation: "The value of sin 90° is 1."
-        },
-        {
-            question: "What is the derivative of x²?",
-            options: ["x", "2x", "x²", "2"],
-            answer: 1,
-            explanation: "Using the power rule, the derivative of x² is 2x."
-        },
-        {
-            question: "What is the value of 10 + 15?",
-            options: ["20", "25", "30", "35"],
-            answer: 1,
-            explanation: "10 + 15 = 25."
-        }
-    ],
-
-    "Physics": [
-        {
-            question: "What is the SI unit of force?",
-            options: ["Joule", "Watt", "Newton", "Pascal"],
-            answer: 2,
-            explanation: "The SI unit of force is Newton (N)."
-        },
-        {
-            question: "What is the formula for speed?",
-            options: [
-                "Distance × Time",
-                "Distance / Time",
-                "Time / Distance",
-                "Mass × Acceleration"
-            ],
-            answer: 1,
-            explanation: "Speed = Distance ÷ Time."
-        },
-        {
-            question: "What is the SI unit of electric current?",
-            options: ["Volt", "Ohm", "Ampere", "Watt"],
-            answer: 2,
-            explanation: "Electric current is measured in Ampere (A)."
-        },
-        {
-            question: "Who gave the three laws of motion?",
-            options: [
-                "Albert Einstein",
-                "Isaac Newton",
-                "Galileo Galilei",
-                "James Watt"
-            ],
-            answer: 1,
-            explanation: "Isaac Newton formulated the three laws of motion."
-        },
-        {
-            question: "What is the SI unit of energy?",
-            options: ["Newton", "Joule", "Watt", "Volt"],
-            answer: 1,
-            explanation: "The SI unit of energy is Joule (J)."
-        }
-    ],
-
-    "English": [
-        {
-            question: "Choose the synonym of 'Happy'.",
-            options: ["Sad", "Joyful", "Angry", "Weak"],
-            answer: 1,
-            explanation: "Joyful means happy."
-        },
-        {
-            question: "Choose the antonym of 'Fast'.",
-            options: ["Quick", "Rapid", "Slow", "Speedy"],
-            answer: 2,
-            explanation: "Slow is the opposite of fast."
-        },
-        {
-            question: "Choose the correct sentence.",
-            options: [
-                "He go to school.",
-                "He going to school.",
-                "He goes to school.",
-                "He gone to school."
-            ],
-            answer: 2,
-            explanation: "With 'He', we use 'goes' in the simple present tense."
-        },
-        {
-            question: "What is the plural of 'Child'?",
-            options: ["Childs", "Childes", "Children", "Childrens"],
-            answer: 2,
-            explanation: "The correct plural form is Children."
-        },
-        {
-            question: "Choose the correct article: ___ apple.",
-            options: ["A", "An", "The", "No article"],
-            answer: 1,
-            explanation: "We use 'an' before a vowel sound: an apple."
-        }
-    ]
-};
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+    min-height: 100vh;
+}
 
 
-// ---------- TEST VARIABLES ----------
+/* ================================
+   APP
+================================ */
 
-let selectedSubject = "";
-let questions = [];
-let currentQuestion = 0;
-let userAnswers = [];
-let score = 0;
-
-let timeLeft = 300; // 5 minutes
-let timer;
+.app {
+    width: 100%;
+    min-height: 100vh;
+}
 
 
-// ---------- START SUBJECT SELECTION ----------
+/* ================================
+   HEADER
+================================ */
 
-function showSubjects() {
+.topbar {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
 
-    const subjects = document.getElementById("subjects");
+    padding: 25px 25px 15px;
 
-    if (subjects) {
-        subjects.style.display = "block";
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.brand-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #0f172a;
+    border-radius: 14px;
+
+    font-size: 24px;
+}
+
+
+.brand h2 {
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+
+
+.brand span {
+    font-size: 12px;
+    color: #64748b;
+}
+
+
+.theme-btn {
+    width: 44px;
+    height: 44px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.08);
+
+    transition: 0.2s;
+}
+
+
+.theme-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+/* ================================
+   DASHBOARD
+================================ */
+
+.dashboard {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px 25px 50px;
+}
+
+
+/* ================================
+   WELCOME
+================================ */
+
+.welcome {
+    min-height: 330px;
+
+    padding: 50px;
+
+    border-radius: 28px;
+
+    background: #0f172a;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+
+.welcome::before {
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    background: rgba(59, 130, 246, 0.15);
+
+    right: 80px;
+    top: -150px;
+}
+
+
+.welcome-text {
+    max-width: 650px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.welcome-label {
+    display: inline-block;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    color: #93c5fd;
+
+    margin-bottom: 15px;
+}
+
+
+.welcome h1 {
+    font-size: 48px;
+    line-height: 1.1;
+
+    margin-bottom: 18px;
+}
+
+
+.welcome h1 span {
+    color: #60a5fa;
+}
+
+
+.welcome p {
+    max-width: 580px;
+
+    color: #cbd5e1;
+
+    font-size: 16px;
+    line-height: 1.7;
+
+    margin-bottom: 28px;
+}
+
+
+.start-btn {
+    border: none;
+
+    background: #3b82f6;
+    color: white;
+
+    padding: 15px 25px;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+
+.start-btn:hover {
+    transform: translateY(-3px);
+    background: #2563eb;
+}
+
+
+.welcome-icon {
+    font-size: 130px;
+
+    position: relative;
+
+    z-index: 2;
+
+    animation: float 3s ease-in-out infinite;
+}
+
+
+@keyframes float {
+
+    0% {
+        transform: translateY(0);
     }
 
-    const startButton = document.querySelector(".start-btn");
-
-    if (startButton) {
-        startButton.style.display = "none";
-    }
-}
-
-
-// ---------- SELECT SUBJECT ----------
-
-function selectSubject(subject) {
-
-    selectedSubject = subject;
-
-    questions = questionBank[subject];
-
-    if (!questions || questions.length === 0) {
-        alert("No questions available for this subject yet.");
-        return;
+    50% {
+        transform: translateY(-10px);
     }
 
-    currentQuestion = 0;
-    score = 0;
-
-    userAnswers = new Array(questions.length).fill(null);
-
-    startTest();
-}
-
-
-// ---------- START TEST ----------
-
-function startTest() {
-
-    const app = document.querySelector(".card");
-
-    if (!app) return;
-
-    app.innerHTML = `
-        <div class="test-header">
-
-            <div>
-                <strong>${selectedSubject}</strong>
-            </div>
-
-            <div id="timer">
-                ⏱️ 05:00
-            </div>
-
-        </div>
-
-        <div id="question-area"></div>
-
-        <div id="navigation"></div>
-    `;
-
-    startTimer();
-
-    displayQuestion();
-}
-
-
-// ---------- TIMER ----------
-
-function startTimer() {
-
-    clearInterval(timer);
-
-    timeLeft = 300;
-
-    timer = setInterval(() => {
-
-        timeLeft--;
-
-        updateTimer();
-
-        if (timeLeft <= 0) {
-
-            clearInterval(timer);
-
-            finishTest();
-
-        }
-
-    }, 1000);
-}
-
-
-function updateTimer() {
-
-    const timerElement = document.getElementById("timer");
-
-    if (!timerElement) return;
-
-    const minutes = Math.floor(timeLeft / 60);
-
-    const seconds = timeLeft % 60;
-
-    timerElement.textContent =
-        "⏱️ " +
-        String(minutes).padStart(2, "0") +
-        ":" +
-        String(seconds).padStart(2, "0");
-}
-
-
-// ---------- DISPLAY QUESTION ----------
-
-function displayQuestion() {
-
-    const area = document.getElementById("question-area");
-
-    const navigation = document.getElementById("navigation");
-
-    if (!area || !navigation) return;
-
-    const q = questions[currentQuestion];
-
-    let optionsHTML = "";
-
-    q.options.forEach((option, index) => {
-
-        const selected =
-            userAnswers[currentQuestion] === index
-                ? "selected"
-                : "";
-
-        optionsHTML += `
-            <button
-                class="answer-option ${selected}"
-                onclick="selectAnswer(${index})">
-
-                <span class="option-letter">
-                    ${String.fromCharCode(65 + index)}
-                </span>
-
-                <span>${option}</span>
-
-            </button>
-        `;
-    });
-
-
-    area.innerHTML = `
-
-        <div class="question-info">
-            Question ${currentQuestion + 1} of ${questions.length}
-        </div>
-
-        <div class="question-card">
-
-            <h2>
-                ${q.question}
-            </h2>
-
-            <div class="options">
-                ${optionsHTML}
-            </div>
-
-        </div>
-
-    `;
-
-
-    navigation.innerHTML = `
-
-        <div class="nav-buttons">
-
-            <button
-                class="nav-btn"
-                onclick="previousQuestion()"
-                ${currentQuestion === 0 ? "disabled" : ""}>
-
-                ◀ Previous
-
-            </button>
-
-            ${
-                currentQuestion === questions.length - 1
-
-                ? `
-                    <button
-                        class="nav-btn finish-btn"
-                        onclick="finishTest()">
-
-                        Finish ✓
-
-                    </button>
-                `
-
-                : `
-                    <button
-                        class="nav-btn next-btn"
-                        onclick="nextQuestion()">
-
-                        Next ▶
-
-                    </button>
-                `
-            }
-
-        </div>
-
-        <div class="question-numbers">
-
-            ${questions.map((_, index) => `
-
-                <button
-                    class="number-btn
-                    ${index === currentQuestion ? "active" : ""}
-                    ${userAnswers[index] !== null ? "answered" : ""}"
-                    onclick="goToQuestion(${index})">
-
-                    ${index + 1}
-
-                </button>
-
-            `).join("")}
-
-        </div>
-
-    `;
-}
-
-
-// ---------- SELECT ANSWER ----------
-
-function selectAnswer(answerIndex) {
-
-    userAnswers[currentQuestion] = answerIndex;
-
-    displayQuestion();
-}
-
-
-// ---------- NEXT QUESTION ----------
-
-function nextQuestion() {
-
-    if (currentQuestion < questions.length - 1) {
-
-        currentQuestion++;
-
-        displayQuestion();
-
+    100% {
+        transform: translateY(0);
     }
 
 }
 
 
-// ---------- PREVIOUS QUESTION ----------
+/* ================================
+   STATISTICS
+================================ */
 
-function previousQuestion() {
+.stats {
+    display: grid;
 
-    if (currentQuestion > 0) {
+    grid-template-columns: repeat(4, 1fr);
 
-        currentQuestion--;
+    gap: 18px;
 
-        displayQuestion();
+    margin-top: 22px;
+}
 
+
+.stat-card {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
+
+    transition: 0.25s;
+}
+
+
+.stat-card:hover {
+    transform: translateY(-4px);
+}
+
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 13px;
+
+    background: #eff6ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+}
+
+
+.stat-card strong {
+    display: block;
+
+    font-size: 24px;
+
+    margin-bottom: 3px;
+}
+
+
+.stat-card span {
+    font-size: 12px;
+
+    color: #64748b;
+}
+
+
+/* ================================
+   SUBJECT SECTION
+================================ */
+
+.subjects-section {
+    margin-top: 50px;
+}
+
+
+.section-heading {
+    display: flex;
+
+    align-items: end;
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+
+.section-heading span {
+    font-size: 12px;
+
+    color: #3b82f6;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+
+.section-heading h2 {
+    font-size: 28px;
+
+    margin-top: 5px;
+}
+
+
+.section-heading p {
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* ================================
+   SUBJECT GRID
+================================ */
+
+.subject-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+
+.subject-card {
+    width: 100%;
+
+    border: none;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    text-align: left;
+
+    gap: 18px;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
+
+    transition: 0.25s;
+}
+
+
+.subject-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.10);
+}
+
+
+.subject-icon {
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 27px;
+}
+
+
+.subject-icon.computer {
+    background: #dbeafe;
+}
+
+
+.subject-icon.mathematics {
+    background: #fef3c7;
+}
+
+
+.subject-icon.physics {
+    background: #ede9fe;
+}
+
+
+.subject-icon.english {
+    background: #dcfce7;
+}
+
+
+.subject-info {
+    flex: 1;
+}
+
+
+.subject-info h3 {
+    font-size: 18px;
+
+    margin-bottom: 6px;
+}
+
+
+.subject-info p {
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+.arrow {
+    font-size: 25px;
+
+    color: #94a3b8;
+
+    transition: 0.2s;
+}
+
+
+.subject-card:hover .arrow {
+    transform: translateX(5px);
+
+    color: #3b82f6;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+    text-align: center;
+
+    padding: 25px;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+footer p {
+    color: #0f172a;
+
+    font-weight: bold;
+
+    margin-bottom: 5px;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 800px) {
+
+    .welcome {
+        padding: 35px 25px;
+
+        min-height: auto;
+    }
+
+
+    .welcome h1 {
+        font-size: 38px;
+    }
+
+
+    .welcome-icon {
+        display: none;
+    }
+
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .subject-grid {
+        grid-template-columns: 1fr;
     }
 
 }
 
 
-// ---------- QUESTION NAVIGATION ----------
+@media (max-width: 500px) {
 
-function goToQuestion(index) {
-
-    currentQuestion = index;
-
-    displayQuestion();
-
-}
-
-
-// ---------- FINISH TEST ----------
-
-function finishTest() {
-
-    clearInterval(timer);
-
-    score = 0;
-
-    questions.forEach((question, index) => {
-
-        if (userAnswers[index] === question.answer) {
-
-            score++;
-
-        }
-
-    });
-
-    showResult();
-}
-
-
-// ---------- RESULT SCREEN ----------
-
-function showResult() {
-
-    const app = document.querySelector(".card");
-
-    if (!app) return;
-
-    const percentage =
-        Math.round((score / questions.length) * 100);
-
-    let message;
-
-    if (percentage >= 80) {
-
-        message = "Excellent! 🎉";
-
-    } else if (percentage >= 60) {
-
-        message = "Good job! 👍";
-
-    } else if (percentage >= 40) {
-
-        message = "Keep practicing! 📚";
-
-    } else {
-
-        message = "Don't give up! 💪";
-
+    .topbar {
+        padding: 18px 15px 10px;
     }
 
 
-    app.innerHTML = `
-
-        <div class="result-screen">
-
-            <div class="result-icon">
-                🏆
-            </div>
-
-            <h1>Test Complete!</h1>
-
-            <h2>${message}</h2>
-
-            <div class="score-box">
-
-                <div class="score">
-                    ${score}/${questions.length}
-                </div>
-
-                <div class="percentage">
-                    ${percentage}%
-                </div>
-
-            </div>
-
-            <p>
-                Subject: <strong>${selectedSubject}</strong>
-            </p>
-
-            <button
-                class="start-btn"
-                onclick="restartTest()">
-
-                🔄 Try Again
-
-            </button>
-
-            <button
-                class="home-btn"
-                onclick="goHome()">
-
-                🏠 Home
-
-            </button>
-
-        </div>
-
-    `;
-}
+    .dashboard {
+        padding: 15px 15px 40px;
+    }
 
 
-// ---------- RESTART ----------
-
-function restartTest() {
-
-    currentQuestion = 0;
-
-    score = 0;
-
-    userAnswers = new Array(questions.length).fill(null);
-
-    startTest();
-}
+    .brand h2 {
+        font-size: 17px;
+    }
 
 
-// ---------- GO HOME ----------
+    .welcome {
+        border-radius: 20px;
 
-function goHome() {
+        padding: 30px 22px;
+    }
 
-    location.reload();
+
+    .welcome h1 {
+        font-size: 32px;
+    }
+
+
+    .welcome p {
+        font-size: 14px;
+    }
+
+
+    .stats {
+        gap: 10px;
+    }
+
+
+    .stat-card {
+        padding: 15px;
+
+        gap: 10px;
+    }
+
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+
+        font-size: 18px;
+    }
+
+
+    .stat-card strong {
+        font-size: 20px;
+    }
+
+
+    .section-heading {
+        display: block;
+    }
+
+
+    .section-heading p {
+        margin-top: 8px;
+    }
+
+
+    .subject-card {
+        padding: 17px;
+    }
 
 }
