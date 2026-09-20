@@ -1,8 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<button
-    class="theme-btn"
-    id="themeButton"
-    onclick="toggleDarkMode()"
-    title="Toggle Dark Mode">
-    🌙
-</button>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#111827">
+
+    <title>MCQs Test App</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <div class="app">
+
+
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <header class="topbar">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    📝
+                </div>
+
+                <div class="brand-text">
+
+                    <h2>MCQs Test</h2>
+
+                    <span>
+                        University Preparation
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="theme-btn"
+                id="themeButton"
+                onclick="toggleDarkMode()"
+                title="Toggle Dark Mode">
+
+                🌙
+
+            </button>
+
+        </header>
+
+
+
+        <!-- =========================
+             MAIN DASHBOARD
+        ========================== -->
+
+        <main class="dashboard">
+
+
+            <!-- HERO -->
+
+            <section class="welcome">
+
+                <div class="welcome-text">
+
+                    <span class="welcome-label">
+                        🎓 UNIVERSITY ENTRY TEST
+                    </span>
+
+
+                    <h1>
+                        Practice smarter.
+                        <br>
+
+                        <span>
+                            Achieve better.
+                        </span>
+                    </h1>
+
+
+                    <p>
+
+                        Test your knowledge, improve your skills,
+                        and prepare confidently for your university
+                        entrance exams.
+
+                    </p>
+
+
+                    <button
+                        class="start-btn"
+                        onclick="showSubjects()">
+
+                        🚀 Start Test
+
+                    </button>
+
+                </div>
+
+
+                <div class="welcome-icon">
+
+                    🧠
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 STATISTICS
+            ========================== -->
+
+            <section class="stats">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📝
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            0
+                        </strong>
+
+                        <span>
+                            Tests Completed
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🎯
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            0%
+                        </strong>
+
+                        <span>
+                            Average Score
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🔥
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            0
+                        </strong>
+
+                        <span>
+                            Day Streak
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🏆
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            0%
+                        </strong>
+
+                        <span>
+                            Best Score
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =========================
+                 SUBJECTS
+            ========================== -->
+
+            <section
+                class="subjects-section"
+                id="subjects">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span>
+                            📚 PRACTICE
+                        </span>
+
+                        <h2>
+                            Choose Your Subject
+                        </h2>
+
+                    </div>
+
+
+                    <p>
+                        Select a subject and start practicing.
+                    </p>
+
+                </div>
+
+
+
+                <div class="subject-grid">
+
+
+                    <!-- COMPUTER SCIENCE -->
+
+                    <button
+                        class="subject-card"
+                        onclick="selectSubject('Computer Science')">
+
+
+                        <div class="subject-icon computer">
+                            💻
+                        </div>
+
+
+                        <div class="subject-info">
+
+                            <h3>
+                                Computer Science
+                            </h3>
+
+                            <p>
+                                Programming, algorithms
+                                & computer concepts
+                            </p>
+
+                        </div>
+
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- MATHEMATICS -->
+
+                    <button
+                        class="subject-card"
+                        onclick="selectSubject('Mathematics')">
+
+
+                        <div class="subject-icon mathematics">
+                            📐
+                        </div>
+
+
+                        <div class="subject-info">
+
+                            <h3>
+                                Mathematics
+                            </h3>
+
+                            <p>
+                                Algebra, calculus,
+                                geometry & more
+                            </p>
+
+                        </div>
+
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- PHYSICS -->
+
+                    <button
+                        class="subject-card"
+                        onclick="selectSubject('Physics')">
+
+
+                        <div class="subject-icon physics">
+                            ⚡
+                        </div>
+
+
+                        <div class="subject-info">
+
+                            <h3>
+                                Physics
+                            </h3>
+
+                            <p>
+                                Mechanics, electricity,
+                                waves & more
+                            </p>
+
+                        </div>
+
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- ENGLISH -->
+
+                    <button
+                        class="subject-card"
+                        onclick="selectSubject('English')">
+
+
+                        <div class="subject-icon english">
+                            📖
+                        </div>
+
+
+                        <div class="subject-info">
+
+                            <h3>
+                                English
+                            </h3>
+
+                            <p>
+                                Grammar, vocabulary
+                                & comprehension
+                            </p>
+
+                        </div>
+
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+
+
+        <!-- =========================
+             FOOTER
+        ========================== -->
+
+        <footer>
+
+            <p>
+                📝 MCQs Test App
+            </p>
+
+            <span>
+                University Entry Test Preparation
+            </span>
+
+        </footer>
+
+
+    </div>
+
+
+
+    <!-- IMPORTANT:
+         Keep your existing JavaScript file.
+    -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
