@@ -1,430 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="theme-color"
-          content="#111827">
-
-    <title>MCQs Test App</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MCQs Test App - Test Your Knowledge with Multiple Choice Questions">
+    <title>MCQs TEST APP</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
-
-
 <body>
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">MCQs TEST APP</div>
+            <nav class="navbar-menu">
+                <a href="#" class="nav-link active" id="nav-home">Home</a>
+                <a href="#" class="nav-link" id="nav-results">Results</a>
+            </nav>
+        </div>
+    </header>
 
-    <div class="app">
+    <!-- Main Container -->
+    <main class="main-container">
 
-
-        <!-- =========================
-             HEADER
-        ========================== -->
-
-        <header class="topbar">
-
-            <div class="brand">
-
-                <div class="brand-icon">
-                    📝
+        <!-- ========== HOME SCREEN SECTION ========== -->
+        <section id="home-section" class="section active">
+            <div class="home-content">
+                <!-- App Title and Subtitle -->
+                <div class="hero-section">
+                    <h1 class="app-title">MCQs TEST APP</h1>
+                    <p class="app-subtitle">Test Your Knowledge</p>
                 </div>
 
-                <div class="brand-text">
+                <!-- Subject Cards Container -->
+                <div class="subjects-container">
+                    <!-- Computer Science Card -->
+                    <div class="subject-card" id="subject-cs">
+                        <div class="subject-icon">💻</div>
+                        <h3 class="subject-name">Computer Science</h3>
+                        <p class="subject-description">Test your CS knowledge</p>
+                    </div>
 
-                    <h2>MCQs Test</h2>
+                    <!-- Mathematics Card -->
+                    <div class="subject-card" id="subject-math">
+                        <div class="subject-icon">🔢</div>
+                        <h3 class="subject-name">Mathematics</h3>
+                        <p class="subject-description">Challenge your math skills</p>
+                    </div>
 
-                    <span>
-                        University Preparation
-                    </span>
+                    <!-- Physics Card -->
+                    <div class="subject-card" id="subject-physics">
+                        <div class="subject-icon">⚛️</div>
+                        <h3 class="subject-name">Physics</h3>
+                        <p class="subject-description">Explore physics concepts</p>
+                    </div>
 
+                    <!-- English Card -->
+                    <div class="subject-card" id="subject-english">
+                        <div class="subject-icon">📚</div>
+                        <h3 class="subject-name">English</h3>
+                        <p class="subject-description">Improve your English</p>
+                    </div>
                 </div>
 
+                <!-- Action Buttons Section -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="start-test-btn">Start Test</button>
+                    <button class="btn btn-secondary" id="practice-mode-btn">Practice Mode</button>
+                </div>
             </div>
+        </section>
 
-
-            <button
-                class="theme-btn"
-                id="themeButton"
-                onclick="toggleDarkMode()"
-                title="Toggle Dark Mode">
-
-                🌙
-
-            </button>
-
-        </header>
-
-
-
-        <!-- =========================
-             MAIN DASHBOARD
-        ========================== -->
-
-        <main class="dashboard">
-
-
-            <!-- HERO -->
-
-            <section class="welcome">
-
-                <div class="welcome-text">
-
-                    <span class="welcome-label">
-                        🎓 UNIVERSITY ENTRY TEST
-                    </span>
-
-
-                    <h1>
-                        Practice smarter.
-                        <br>
-
-                        <span>
-                            Achieve better.
+        <!-- ========== MCQ TEST SECTION ========== -->
+        <section id="test-section" class="section">
+            <div class="test-container">
+                <!-- Header with Timer and Progress -->
+                <div class="test-header">
+                    <div class="test-info">
+                        <span class="question-counter">
+                            <span id="current-question">1</span> / <span id="total-questions">10</span>
                         </span>
-                    </h1>
-
-
-                    <p>
-
-                        Test your knowledge, improve your skills,
-                        and prepare confidently for your university
-                        entrance exams.
-
-                    </p>
-
-
-                    <button
-                        class="start-btn"
-                        onclick="showSubjects()">
-
-                        🚀 Start Test
-
-                    </button>
-
+                    </div>
+                    <div class="timer-section">
+                        <span class="timer-label">Time:</span>
+                        <span class="timer" id="timer">00:00</span>
+                    </div>
                 </div>
 
-
-                <div class="welcome-icon">
-
-                    🧠
-
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
                 </div>
 
-            </section>
-
-
-
-            <!-- =========================
-                 STATISTICS
-            ========================== -->
-
-            <section class="stats">
-
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">
-                        📝
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            0
-                        </strong>
-
-                        <span>
-                            Tests Completed
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">
-                        🎯
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            0%
-                        </strong>
-
-                        <span>
-                            Average Score
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">
-                        🔥
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            0
-                        </strong>
-
-                        <span>
-                            Day Streak
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="stat-card">
-
-                    <div class="stat-icon">
-                        🏆
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            0%
-                        </strong>
-
-                        <span>
-                            Best Score
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-            </section>
-
-
-
-            <!-- =========================
-                 SUBJECTS
-            ========================== -->
-
-            <section
-                class="subjects-section"
-                id="subjects">
-
-
-                <div class="section-heading">
-
-                    <div>
-
-                        <span>
-                            📚 PRACTICE
-                        </span>
-
-                        <h2>
-                            Choose Your Subject
+                <!-- Question Card -->
+                <div class="question-card">
+                    <!-- Question Text -->
+                    <div class="question-section">
+                        <h2 class="question-text" id="question-text">
+                            Sample Question: This is a sample MCQ question for testing purposes?
                         </h2>
-
                     </div>
 
+                    <!-- Answer Options -->
+                    <div class="options-container">
+                        <!-- Option 1 -->
+                        <div class="option" id="option-1">
+                            <input type="radio" name="answer" id="option-1-radio" value="1" class="option-radio">
+                            <label for="option-1-radio" class="option-label">
+                                <span class="option-text" id="option-1-text">Option A</span>
+                            </label>
+                        </div>
 
-                    <p>
-                        Select a subject and start practicing.
-                    </p>
+                        <!-- Option 2 -->
+                        <div class="option" id="option-2">
+                            <input type="radio" name="answer" id="option-2-radio" value="2" class="option-radio">
+                            <label for="option-2-radio" class="option-label">
+                                <span class="option-text" id="option-2-text">Option B</span>
+                            </label>
+                        </div>
 
+                        <!-- Option 3 -->
+                        <div class="option" id="option-3">
+                            <input type="radio" name="answer" id="option-3-radio" value="3" class="option-radio">
+                            <label for="option-3-radio" class="option-label">
+                                <span class="option-text" id="option-3-text">Option C</span>
+                            </label>
+                        </div>
+
+                        <!-- Option 4 -->
+                        <div class="option" id="option-4">
+                            <input type="radio" name="answer" id="option-4-radio" value="4" class="option-radio">
+                            <label for="option-4-radio" class="option-label">
+                                <span class="option-text" id="option-4-text">Option D</span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
-
-
-                <div class="subject-grid">
-
-
-                    <!-- COMPUTER SCIENCE -->
-
-                    <button
-                        class="subject-card"
-                        onclick="selectSubject('Computer Science')">
-
-
-                        <div class="subject-icon computer">
-                            💻
+                <!-- Navigation and Question Jumpter -->
+                <div class="test-footer">
+                    <!-- Question Navigation -->
+                    <div class="question-navigator">
+                        <span class="navigator-label">Jump to:</span>
+                        <div class="question-buttons" id="question-buttons">
+                            <!-- Question buttons will be generated here -->
                         </div>
+                    </div>
 
-
-                        <div class="subject-info">
-
-                            <h3>
-                                Computer Science
-                            </h3>
-
-                            <p>
-                                Programming, algorithms
-                                & computer concepts
-                            </p>
-
-                        </div>
-
-
-                        <span class="arrow">
-                            →
-                        </span>
-
-                    </button>
-
-
-
-                    <!-- MATHEMATICS -->
-
-                    <button
-                        class="subject-card"
-                        onclick="selectSubject('Mathematics')">
-
-
-                        <div class="subject-icon mathematics">
-                            📐
-                        </div>
-
-
-                        <div class="subject-info">
-
-                            <h3>
-                                Mathematics
-                            </h3>
-
-                            <p>
-                                Algebra, calculus,
-                                geometry & more
-                            </p>
-
-                        </div>
-
-
-                        <span class="arrow">
-                            →
-                        </span>
-
-                    </button>
-
-
-
-                    <!-- PHYSICS -->
-
-                    <button
-                        class="subject-card"
-                        onclick="selectSubject('Physics')">
-
-
-                        <div class="subject-icon physics">
-                            ⚡
-                        </div>
-
-
-                        <div class="subject-info">
-
-                            <h3>
-                                Physics
-                            </h3>
-
-                            <p>
-                                Mechanics, electricity,
-                                waves & more
-                            </p>
-
-                        </div>
-
-
-                        <span class="arrow">
-                            →
-                        </span>
-
-                    </button>
-
-
-
-                    <!-- ENGLISH -->
-
-                    <button
-                        class="subject-card"
-                        onclick="selectSubject('English')">
-
-
-                        <div class="subject-icon english">
-                            📖
-                        </div>
-
-
-                        <div class="subject-info">
-
-                            <h3>
-                                English
-                            </h3>
-
-                            <p>
-                                Grammar, vocabulary
-                                & comprehension
-                            </p>
-
-                        </div>
-
-
-                        <span class="arrow">
-                            →
-                        </span>
-
-                    </button>
-
-
+                    <!-- Control Buttons -->
+                    <div class="control-buttons">
+                        <button class="btn btn-outline" id="previous-btn">Previous</button>
+                        <button class="btn btn-primary" id="next-btn">Next</button>
+                    </div>
                 </div>
 
-            </section>
+                <!-- Submit Test Button -->
+                <div class="submit-section">
+                    <button class="btn btn-submit" id="submit-test-btn">Submit Test</button>
+                </div>
+            </div>
+        </section>
 
+        <!-- ========== RESULTS SECTION ========== -->
+        <section id="results-section" class="section">
+            <div class="results-container">
+                <!-- Results Header -->
+                <div class="results-header">
+                    <h2 class="results-title">Test Results</h2>
+                    <p class="results-subtitle">Here's how you performed</p>
+                </div>
 
-        </main>
+                <!-- Score Display Card -->
+                <div class="score-card">
+                    <div class="score-display">
+                        <div class="score-circle">
+                            <span class="score-percentage" id="score-percentage">0%</span>
+                        </div>
+                        <div class="score-details">
+                            <p class="score-text">
+                                <span id="correct-answers">0</span> / <span id="total-answers">10</span> Correct
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Results Summary -->
+                <div class="results-summary">
+                    <div class="result-item">
+                        <span class="result-label">Correct Answers:</span>
+                        <span class="result-value correct" id="display-correct">0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Wrong Answers:</span>
+                        <span class="result-value wrong" id="display-wrong">0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Unanswered:</span>
+                        <span class="result-value unanswered" id="display-unanswered">0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Percentage:</span>
+                        <span class="result-value percentage" id="display-percentage">0%</span>
+                    </div>
+                </div>
 
+                <!-- Detailed Answer Review (Optional) -->
+                <div class="answer-review">
+                    <h3 class="review-title">Answer Review</h3>
+                    <div class="review-list" id="review-list">
+                        <!-- Review items will be generated here -->
+                    </div>
+                </div>
 
-        <!-- =========================
-             FOOTER
-        ========================== -->
+                <!-- Action Buttons -->
+                <div class="results-actions">
+                    <button class="btn btn-primary" id="restart-test-btn">Restart Test</button>
+                    <button class="btn btn-secondary" id="back-home-btn">Back to Home</button>
+                </div>
+            </div>
+        </section>
 
-        <footer>
+    </main>
 
-            <p>
-                📝 MCQs Test App
-            </p>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 MCQs TEST APP. All rights reserved.</p>
+    </footer>
 
-            <span>
-                University Entry Test Preparation
-            </span>
-
-        </footer>
-
-
-    </div>
-
-
-
-    <!-- IMPORTANT:
-         Keep your existing JavaScript file.
-    -->
-
+    <!-- Link to JavaScript File -->
     <script src="script.js"></script>
-
-
 </body>
-
 </html>
